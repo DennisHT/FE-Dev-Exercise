@@ -4,7 +4,7 @@
     <app-header :name="fullname"></app-header>
     <highlight-panel></highlight-panel>
     <app-footer :name="fullname"></app-footer>
-    <newsletter-panel v-if="showModal" :expiredTime.sync="expiredTime"></newsletter-panel>
+    <newsletter-panel v-if="showModal" :expiredTime.sync="expiredTime" :newsletterToggle.sync="newsletterToggle"></newsletter-panel>
   </div>
 </template>
 
@@ -30,6 +30,16 @@ export default {
   },
   created() {
     this.updateTime();
+    let body = document.body,
+      html = document.documentElement;
+
+    this.height = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
     setInterval(this.updateTime, 1000);
   },
   destroyed() {
@@ -39,21 +49,30 @@ export default {
     return {
       fullname: "Dennis Harley",
       expiredTime: "",
-      now: ""
+      now: "",
+      height: 0,
+      newsletterToggle: false
     };
   },
   methods: {
     updateTime() {
       let date = new Date();
       this.now = date.getTime();
+    },
+    getHeight() {
+      console.log("Getting Height");
+      console.log(window.screen.height);
+      return $(document).height();
     }
   },
   computed: {
+    currentHeight() {},
     showModal() {
       if (!this.expiredTime) {
         return true;
       }
-      if (parseInt(this.expiredTime) + 3000 <= this.now) {
+      if (this.newsletterToggle || parseInt(this.expiredTime) + 3000 <= this.now && window.scrollY > this.height/3) {
+        this.newsletterToggle = true
         return true;
       }
       return false;

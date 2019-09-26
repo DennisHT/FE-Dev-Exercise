@@ -37,7 +37,7 @@
 
 <script>
 export default {
-    props: ['expiredTime'],
+    props: ['expiredTime', 'newsletterToggle'],
     data() {
         return{
             
@@ -47,6 +47,7 @@ export default {
         closeModal(){
             let date = new Date();
             this.$emit('update:expiredTime', date.getTime());
+            this.$emit('update:newsletterToggle', false);
         }
     }
 };
