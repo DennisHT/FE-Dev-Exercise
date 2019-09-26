@@ -8,22 +8,26 @@
               <span class="exit-icon" @click="$emit('close')">x</span>
             </slot>
           </div>
-          <div class="modal-header">
-            <slot name="header">
-              <span class="modal-header-content">Get latest updates in web technologies</span>
-            </slot>
-          </div>
-
-          <div class="modal-body">
-            <slot name="body">
-              <span class="modal-body-content">I write articles related to web technologies, such as design trends, development tools, UI/UX case studies and reviews, and more. Sign up to my newsletter to get them all.</span>
-            </slot>
-          </div>
-          <div class="modal-footer">
-              <slot name="footer">
-                  <input type="text" class="modal-input-text" placeholder="Email address">
-                  <button class="modal-button">Count me in!</button>
+          <div class="content-container">
+            <div class="modal-header">
+              <slot name="header">
+                <span class="modal-header-content">Get latest updates in web technologies</span>
               </slot>
+            </div>
+
+            <div class="modal-body">
+              <slot name="body">
+                <span
+                  class="modal-body-content"
+                >I write articles related to web technologies, such as design trends, development tools, UI/UX case studies and reviews, and more. Sign up to my newsletter to get them all.</span>
+              </slot>
+            </div>
+            <div class="modal-footer">
+              <slot name="footer">
+                <input type="text" class="modal-input-text" placeholder="Email address" />
+                <button class="modal-button">Count me in!</button>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
@@ -40,13 +44,14 @@ export default {};
   z-index: 9998;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+  opacity: 0.93;
 }
 
 .modal-container {
   width: 500px;
   margin: 0px auto;
-  padding: 10px 10px 25px 20px;
+  padding: 6px 10px 25px 20px;
   background-color: #007bc1;
   color: white;
   border-radius: 2px;
@@ -56,21 +61,26 @@ export default {};
   text-align: left;
 }
 
+.content-container{
+    margin-right: 20px;
+}
+
 .modal-header-content {
   font-weight: bold;
   font-size: 20px;
 }
 
 .modal-body {
-  margin: 20px 10px 20px 0;
+  margin: 8px 10px 20px 0;
+  font-weight: normal;
 }
 
 .modal-body-content {
-    font-size: 13px;
+  font-size: 13px;
 }
 
-.modal-close{
-    margin-bottom: 10px;
+.modal-close {
+  margin-bottom: 10px;
 }
 
 .exit-icon {
@@ -79,30 +89,24 @@ export default {};
   font-size: 12px;
 }
 
-.modal-input-text{
-    width: 75%;
-    border-radius: 2px;
-    border: 1px solid white;
-    font-size: 12px;
-    padding: 4px 6px;
+.modal-input-text {
+  width: 75%;
+  border-radius: 2px;
+  border: 1px solid white;
+  font-size: 12px;
+  padding: 4px 6px;
 }
 
-.modal-footer{
-    margin-right: 12px;
+.modal-button {
+  font-weight: bold;
+  font-size: 12px;
+  padding: 4px 8px;
+  background-color: #ff8000;
+  color: white;
+  border: 1px solid #ff8000;
+  border-radius: 2px;
 }
 
-.modal-button{
-    font-weight: bold;
-    font-size: 12px;
-    padding: 4px 8px;
-    background-color: #ff8000;
-    color: white;
-    border: 1px solid #ff8000;
-    border-radius: 2px;
-}
-
-.slide-fade-enter {
-}
 
 .slide-fade-enter-active {
   animation: slide-in 0.5s;
@@ -135,6 +139,26 @@ export default {};
   }
   to {
     transform: translateY(200px);
+  }
+}
+
+@media screen and (max-device-width: 480px) {
+  .modal-mask {
+    bottom: 0;
+    right: 0;
+    left: auto;
+  }
+  .modal-container {
+    width: 300px;
+  }
+  .modal-input-text {
+    width: 95%;
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+  .modal-button {
+    width: 100%;
+    margin-right: 0px;
   }
 }
 </style>
