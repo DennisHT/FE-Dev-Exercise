@@ -5,7 +5,7 @@
         <div class="modal-container">
           <div class="modal-close">
             <slot name="close">
-              <span class="exit-icon" @click="$emit('close')">x</span>
+              <span class="exit-icon" @click="closeModal">x</span>
             </slot>
           </div>
           <div class="content-container">
@@ -36,7 +36,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props: ['expiredTime'],
+    data() {
+        return{
+            
+        }
+    },
+    methods: {
+        closeModal(){
+            let date = new Date();
+            this.$emit('update:expiredTime', date.getTime());
+        }
+    }
+};
 </script>
 <style scoped>
 .modal-mask {
@@ -46,10 +59,11 @@ export default {};
   left: 0;
   background-color: transparent;
   opacity: 0.93;
+  max-width: 640px;
+  width: 56%;
 }
 
 .modal-container {
-  width: 500px;
   margin: 0px auto;
   padding: 6px 10px 25px 20px;
   background-color: #007bc1;
@@ -61,8 +75,8 @@ export default {};
   text-align: left;
 }
 
-.content-container{
-    margin-right: 20px;
+.content-container {
+  margin-right: 20px;
 }
 
 .modal-header-content {
@@ -107,6 +121,9 @@ export default {};
   border-radius: 2px;
 }
 
+.slide-fade.enter {
+    opacity: 0;
+}
 
 .slide-fade-enter-active {
   animation: slide-in 0.5s;
@@ -147,9 +164,7 @@ export default {};
     bottom: 0;
     right: 0;
     left: auto;
-  }
-  .modal-container {
-    width: 300px;
+    width: 33%;
   }
   .modal-input-text {
     width: 95%;

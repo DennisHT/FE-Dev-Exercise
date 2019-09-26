@@ -13,9 +13,7 @@ export default {
   props: ["title", "icon", "description"],
   data() {
     return {
-      title: "",
-      icon: "",
-      description: ""
+      
     };
   }
 };

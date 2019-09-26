@@ -32,7 +32,7 @@ export default {
   props: ["name"],
   data() {
     return {
-      name: ''
+      
     };
   }
 };
