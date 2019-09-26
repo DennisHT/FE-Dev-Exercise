@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <notif-panel>`</notif-panel>
-    <app-header></app-header>
+    <app-header :name="name"></app-header>
     <highlight-panel></highlight-panel>
-    This is App.
+    <app-footer :name="name"></app-footer>
+    <newsletter-panel v-if="showModal" @close="showModal = false"></newsletter-panel>
   </div>
 </template>
 
@@ -11,16 +12,21 @@
 import NotificationPanelVue from './components/NotificationPanel.vue'
 import AppHeaderVue from './components/AppHeader.vue'
 import HighlightPanelVue from './components/HighlightPanel.vue'
+import AppFooterVue from './components/AppFooter.vue'
+import NewsletterPanelVue from './components/NewsletterPanel.vue'
 export default {
   components: {
     'notif-panel' : NotificationPanelVue,
     'app-header' : AppHeaderVue,
-    'highlight-panel' : HighlightPanelVue
+    'highlight-panel' : HighlightPanelVue,
+    'app-footer' : AppFooterVue,
+    'newsletter-panel' : NewsletterPanelVue
   },
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      name: 'Dennis Harley',
+      showModal: true
     }
   }
 }
@@ -33,8 +39,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
   background-color: #e5e5e5;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 h1, h2 {

@@ -7,7 +7,7 @@
 
       <div class="hero-shot">
         <div class="hero-shot-title">
-          <span>Hello! I'm {your-name}</span>
+          <span>Hello! I'm {{name}}</span>
         </div>
         <div class="hero-shot-subtitle">
           <span>Consult, Design, and Develop Websites</span>
@@ -28,7 +28,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["name"],
+  data() {
+    return {
+      name: ''
+    };
+  }
+};
 </script>
 
 <style scoped>
@@ -86,7 +93,7 @@ export default {};
   background-color: transparent;
   font-weight: bold;
 }
-.button-contact:hover{
+.button-contact:hover {
   color: #004a75;
   background-color: white;
 }

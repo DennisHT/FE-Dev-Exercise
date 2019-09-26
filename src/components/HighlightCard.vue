@@ -26,7 +26,6 @@ export default {
   margin: 5px;
   border: 1px solid #b4b4b4ab;
   background-color: #e5e5e5;
-  width: 100%;
   height: auto;
   /* padding: 15px 0; */
 }
@@ -37,7 +36,7 @@ export default {
 }
 .card-title {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #818181;
 }
 .card-icon {
@@ -45,5 +44,45 @@ export default {
 .card-description {
   padding: 0px 15px 20px 15px;
   text-align: left;
+  font-size: 1rem;
+}
+
+
+
+@media screen and (max-width: 480px) {
+  .background-component {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 480px) {
+  .background-component {
+    width: 45%;
+  }
+}
+@media screen and (min-width: 960px) {
+  .background-component {
+    width: 30%;
+  }
+}
+@media screen and (max-device-width: 480px) {
+  .background-component {
+    width: 90%;
+  }
+  .card-description{
+      font-size: 0.6rem;
+  }
+  .card-title{
+      font-size: 2.7rem;
+  }
+}
+@media screen and (min-device-width: 480px) {
+  .background-component {
+    width: 45%;
+  }
+}
+@media screen and (min-device-width: 960px) {
+  .background-component {
+    width: 30%;
+  }
 }
 </style>
