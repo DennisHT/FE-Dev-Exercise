@@ -1,6 +1,6 @@
 <template>
     <div class="background-component">
-        	&copy; 2019 {{name}}. All rights reserved. 
+        &copy; 2019 {{name}}. All rights reserved. 
     </div>
 </template>
 

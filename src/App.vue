@@ -63,7 +63,7 @@ export default {
     adjustComponent() {
       //Get app size
       this.getSize();
-      
+
       //Newsletter Panel
       this.checkNewsletter();
 
@@ -84,13 +84,11 @@ export default {
         this.showModal = false;
       }
     },
-    notificationStyle(){
+    notificationStyle() {
       if (window.scrollY === 0) {
-        console.log("Update style. " + this.bodyWidth)
         this.styleNotif = `position: relative; width: ${this.bodyWidth}px`;
         this.onTop = true;
       } else {
-        console.log("Update style." + this.bodyWidth)
         this.styleNotif = `position: fixed; width: ${this.bodyWidth}px`;
         this.onTop = false;
       }
@@ -105,7 +103,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scooped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -124,23 +122,24 @@ body {
   justify-content: center;
   align-items: center;
 }
-.bumper{
+.bumper {
   width: 50%;
   height: 70px;
 }
 @media screen and (max-device-width: 480px) {
-  .bumper{
+  .bumper {
     height: 140px;
   }
 }
 @media screen and (max-width: 480px) {
-  .bumper{
+  .bumper {
     height: 140px;
   }
 }
 @media screen and (min-width: 1366px) {
-  #app{
+  #app {
     max-width: 1366px;
   }
 }
 </style>
+
