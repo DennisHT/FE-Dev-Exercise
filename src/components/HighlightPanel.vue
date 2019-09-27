@@ -73,9 +73,9 @@ export default {
 
 <style scoped>
 .background-component {
+  margin: 50px 0;
 }
 .highlight-title {
-  margin-top: 50px;
   font-size: 30px;
   font-weight: bold;
 }

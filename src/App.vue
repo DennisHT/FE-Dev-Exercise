@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-    <notif-panel>`</notif-panel>
+    <div v-if="!onTop && showNotif" class="bumper"></div>
+    <notif-panel v-if="showNotif" @close="showNotif = false" :style="styleNotif">`</notif-panel>
     <app-header :name="fullname"></app-header>
     <highlight-panel></highlight-panel>
     <app-footer :name="fullname"></app-footer>
-    <newsletter-panel v-if="showModal" :expiredTime.sync="expiredTime" :newsletterToggle.sync="newsletterToggle"></newsletter-panel>
+    <newsletter-panel
+      v-if="showModal"
+      :expiredTime.sync="expiredTime"
+      :newsletterToggle.sync="newsletterToggle"
+      @close="showModal = false"
+    ></newsletter-panel>
   </div>
 </template>
 
@@ -29,55 +35,72 @@ export default {
     }
   },
   created() {
-    this.updateTime();
-    let body = document.body,
-      html = document.documentElement;
-
-    this.height = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight
-    );
-    setInterval(this.updateTime, 1000);
+    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleResize);
+    this.getSize();
   },
   destroyed() {
-    clearInterval(this.updateTime);
+    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleResize);
   },
   data() {
     return {
       fullname: "Dennis Harley",
       expiredTime: "",
-      now: "",
       height: 0,
-      newsletterToggle: false
+      newsletterToggle: false,
+      showModal: false,
+      showNotif: true,
+      styleNotif: "",
+      bodyWidth: 0,
+      onTop: true
     };
   },
   methods: {
-    updateTime() {
-      let date = new Date();
-      this.now = date.getTime();
+    getSize() {
+      let body = document.body,
+        html = document.documentElement;
+
+      this.height = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      );
+
+      this.bodyWidth = body.scrollWidth;
     },
-    getHeight() {
-      console.log("Getting Height");
-      console.log(window.screen.height);
-      return $(document).height();
+    handleScroll() {
+      this.getSize();
+      //Newsletter Panel
+      let now = new Date();
+      if (
+        (!this.expiredTime && window.scrollY > this.height / 3) ||
+        this.newsletterToggle ||
+        (parseInt(this.expiredTime) + 600000 <= now.getTime() &&
+          window.scrollY > this.height / 3)
+      ) {
+        this.newsletterToggle = true;
+        this.showModal = true;
+      } else {
+        this.showModal = false;
+      }
+
+      //Notification Panel & Bumper
+      if (window.scrollY <= 10) {
+        this.styleNotif = `position: relative; width: ${this.bodyWidth}px`;
+        this.onTop = true;
+      } else {
+        this.styleNotif = `position: fixed; width: ${this.bodyWidth}px`;
+        this.onTop = false;
+      }
+    },
+    handleResize() {
+      this.getSize();
     }
   },
-  computed: {
-    currentHeight() {},
-    showModal() {
-      if (!this.expiredTime) {
-        return true;
-      }
-      if (this.newsletterToggle || parseInt(this.expiredTime) + 3000 <= this.now && window.scrollY > this.height/3) {
-        this.newsletterToggle = true
-        return true;
-      }
-      return false;
-    }
-  },
+  computed: {},
   watch: {
     expiredTime() {
       localStorage.expiredTime = this.expiredTime;
@@ -98,23 +121,21 @@ export default {
   justify-content: flex-start;
   flex-direction: column;
 }
-
-h1,
-h2 {
-  font-weight: normal;
+body {
+  margin: 0;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+.bumper{
+  width: 50%;
+  height: 80px;
 }
-
-li {
-  display: inline-block;
-  margin: 0 10px;
+@media screen and (max-device-width: 480px) {
+  .bumper{
+    height: 140px;
+  }
 }
-
-a {
-  color: #42b983;
+@media screen and (max-width: 480px) {
+  .bumper{
+    height: 140px;
+  }
 }
 </style>

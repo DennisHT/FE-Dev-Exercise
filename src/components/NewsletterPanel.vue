@@ -48,6 +48,7 @@ export default {
             let date = new Date();
             this.$emit('update:expiredTime', date.getTime());
             this.$emit('update:newsletterToggle', false);
+            this.$emit('close');
         }
     }
 };
