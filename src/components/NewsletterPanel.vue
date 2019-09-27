@@ -181,7 +181,7 @@ export default {
 }
 
 
-@media screen and (min-device-width: 481px) and (max-device-width: 804px) {
+@media screen and (min-device-width: 481px) and (max-device-width: 835px) {
 .modal-input-text {
     width: 50%;
   }
@@ -204,7 +204,7 @@ export default {
     margin-right: 0px;
   }
 }
-@media screen and (min-width: 481px) and (max-width: 804px) {
+@media screen and (min-width: 481px) and (max-width: 835px) {
 .modal-input-text {
     width: 50%;
   }
