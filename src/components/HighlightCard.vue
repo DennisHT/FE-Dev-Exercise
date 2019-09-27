@@ -2,7 +2,7 @@
   <div class="background-component">
     <div class="first-row">
       <div class="card-title">{{title}}</div>
-      <div class="card-icon">{{icon}}</div>
+      <div class="card-icon"><i :class="icon" class="fa-lg"></i></div>
     </div>
     <div class="card-description">{{description}}</div>
   </div>
@@ -37,7 +37,10 @@ export default {
     font-size: 1.5rem;
     color: #818181;
 }
-.card-icon {
+.card-icon{
+  align-items: center;
+  display: flex;
+  color: #818181;
 }
 .card-description {
   padding: 0px 15px 20px 15px;
@@ -51,8 +54,14 @@ export default {
   .background-component {
     width: 90%;
   }
+  .card-description{
+      font-size: 0.6rem;
+  }
+  .card-title{
+      font-size: 1.5rem;
+  }
 }
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 480px) and (max-width: 959px) {
   .background-component {
     width: 45%;
   }
@@ -70,10 +79,10 @@ export default {
       font-size: 0.6rem;
   }
   .card-title{
-      font-size: 2.7rem;
+      font-size: 1.5rem;
   }
 }
-@media screen and (min-device-width: 480px) {
+@media screen and (min-device-width: 480px) and (max-device-width: 959px) {
   .background-component {
     width: 45%;
   }

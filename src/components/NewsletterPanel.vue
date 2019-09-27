@@ -106,7 +106,7 @@ export default {
 }
 
 .modal-input-text {
-  width: 75%;
+  width: 73%;
   border-radius: 2px;
   border: 1px solid white;
   font-size: 12px;
@@ -121,6 +121,7 @@ export default {
   color: white;
   border: 1px solid #ff8000;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .slide-fade.enter {
@@ -166,7 +167,7 @@ export default {
     bottom: 0;
     right: 0;
     left: auto;
-    width: 33%;
+    width: 70%;
   }
   .modal-input-text {
     width: 95%;
@@ -176,6 +177,36 @@ export default {
   .modal-button {
     width: 100%;
     margin-right: 0px;
+  }
+}
+
+
+@media screen and (min-device-width: 481px) and (max-device-width: 804px) {
+.modal-input-text {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .modal-mask {
+    bottom: 0;
+    right: 0;
+    left: auto;
+    width: 70%;
+  }
+  .modal-input-text {
+    width: 95%;
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+  .modal-button {
+    width: 100%;
+    margin-right: 0px;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 804px) {
+.modal-input-text {
+    width: 50%;
   }
 }
 </style>

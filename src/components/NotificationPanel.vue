@@ -1,12 +1,15 @@
 <template>
   <transition name="slide" mode="out-in">
     <div class="background-component">
-      <div class="flex-center content" style="width: 50%">
-        <div class="flex-center" style="width: 80%; float: left">
-          <span>
-            By accessing and using this website, you acknowledge that you have read and
-            understand our</span> <span class="blue-text">Cookie Policy</span>, <span class="blue-text">Privacy Policy</span>, and our <span class="blue-text">Terms of Service</span>.
-          
+      <div class="flex-center content">
+        <div class="flex-center content-text" >
+          By accessing and using this website, you acknowledge that you have read and
+          understand our
+          <span
+            class="blue-text"
+          >Cookie Policy</span>,
+          <span class="blue-text">Privacy Policy</span>, and our
+          <span class="blue-text">Terms of Service</span>
         </div>
         <div>
           <button class="button-notif" @click="$emit('close')">Got it</button>
@@ -22,7 +25,7 @@ export default {};
 
 <style scoped>
 .background-component {
-  background-color: #e8e9eb;
+  background-color: #fafafa;
   height: auto;
   padding: 20px 0;
   display: flex;
@@ -46,13 +49,20 @@ export default {};
   border-radius: 2px;
   border: 1px solid #007bc1;
   margin-left: 30px;
+  cursor: pointer;
 }
 .content {
   display: flex;
   flex-direction: row;
+  width: 50%;
+  font-size: 0.8em;
+}
+.content-text{
+  width: 80%;
+  float: left;
 }
 
-.blue-text{
+.blue-text {
   font-weight: bold;
   color: #4232cf;
   cursor: pointer;
@@ -89,6 +99,10 @@ export default {};
   .content {
     flex-direction: column;
     align-items: flex-start;
+    width: 90%;
+  }
+  .content-text{
+    width: 100%;
   }
   .background-component {
     padding: 20px 0 10px 0;
@@ -98,10 +112,28 @@ export default {};
     margin-left: 0px;
   }
 }
+@media screen and (min-device-width: 481px) and (max-device-width: 959px) {
+  .content {
+    width: 75%;
+  }
+  .button-notif{
+    margin-left: 8px;
+  }
+}
+@media screen and (min-device-width: 960px) {
+  .content {
+    width: 50%;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .content {
     flex-direction: column;
     align-items: flex-start;
+    width: 90%;
+  }
+  .content-text{
+    width: 100%;
   }
   .background-component {
     padding: 20px 0 10px 0;
@@ -109,6 +141,19 @@ export default {};
   .button-notif {
     margin-top: 15px;
     margin-left: 0px;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 959px) {
+  .content {
+    width: 75%;
+  }
+  .button-notif{
+    margin-left: 8px;
+  }
+}
+@media screen and (min-width: 960px) {
+  .content {
+    width: 50%;
   }
 }
 </style>

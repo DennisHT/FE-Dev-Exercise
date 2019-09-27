@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" ref="app">
     <div v-if="!onTop && showNotif" class="bumper"></div>
     <notif-panel v-if="showNotif" @close="showNotif = false" :style="styleNotif">`</notif-panel>
     <app-header :name="fullname"></app-header>
@@ -35,13 +35,11 @@ export default {
     }
   },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
-    window.addEventListener("resize", this.handleResize);
-    this.getSize();
+    window.addEventListener("scroll", this.adjustComponent);
+    window.onresize = this.adjustComponent;
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
-    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("scroll", this.adjustComponent);
   },
   data() {
     return {
@@ -58,22 +56,21 @@ export default {
   },
   methods: {
     getSize() {
-      let body = document.body,
-        html = document.documentElement;
-
-      this.height = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
-
-      this.bodyWidth = body.scrollWidth;
+      let app = this.$refs.app;
+      this.height = app.clientHeight;
+      this.bodyWidth = app.clientWidth;
     },
-    handleScroll() {
+    adjustComponent() {
+      //Get app size
       this.getSize();
+      
       //Newsletter Panel
+      this.checkNewsletter();
+
+      //Notification Panel & Bumper
+      this.notificationStyle();
+    },
+    checkNewsletter() {
       let now = new Date();
       if (
         (!this.expiredTime && window.scrollY > this.height / 3) ||
@@ -86,18 +83,17 @@ export default {
       } else {
         this.showModal = false;
       }
-
-      //Notification Panel & Bumper
-      if (window.scrollY <= 10) {
+    },
+    notificationStyle(){
+      if (window.scrollY === 0) {
+        console.log("Update style. " + this.bodyWidth)
         this.styleNotif = `position: relative; width: ${this.bodyWidth}px`;
         this.onTop = true;
       } else {
+        console.log("Update style." + this.bodyWidth)
         this.styleNotif = `position: fixed; width: ${this.bodyWidth}px`;
         this.onTop = false;
       }
-    },
-    handleResize() {
-      this.getSize();
     }
   },
   computed: {},
@@ -120,13 +116,17 @@ export default {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  width: 100%;
 }
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .bumper{
   width: 50%;
-  height: 80px;
+  height: 70px;
 }
 @media screen and (max-device-width: 480px) {
   .bumper{
@@ -136,6 +136,11 @@ body {
 @media screen and (max-width: 480px) {
   .bumper{
     height: 140px;
+  }
+}
+@media screen and (min-width: 1366px) {
+  #app{
+    max-width: 1366px;
   }
 }
 </style>

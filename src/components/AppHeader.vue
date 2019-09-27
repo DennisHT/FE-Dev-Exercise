@@ -92,6 +92,7 @@ export default {
   color: white;
   background-color: transparent;
   font-weight: bold;
+  cursor: pointer;
 }
 .button-contact:hover {
   color: #004a75;
