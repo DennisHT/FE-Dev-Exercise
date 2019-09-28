@@ -1,28 +1,30 @@
 <template>
   <div class="background-component">
     <div class="layer">
-      <div class="logo">
-        <img src="../assets/y-logo-white.png" alt style="width: 50px; height: auto;" />
-      </div>
+      <div class="container">
+        <div class="logo">
+          <img src="../assets/y-logo-white.png" alt style="width: 50px; height: auto;" />
+        </div>
 
-      <div class="hero-shot">
-        <div class="hero-shot-title">
-          <span>Hello! I'm {{name}}</span>
+        <div class="hero-shot">
+          <div class="hero-shot-title">
+            <span>Hello! I'm {{name}}</span>
+          </div>
+          <div class="hero-shot-subtitle">
+            <span>Consult, Design, and Develop Websites</span>
+          </div>
+          <div class="hero-shot-description">
+            <span>
+              Have something great in mind? Feel free to contact me.
+              I'll help you to make it happen.
+            </span>
+          </div>
+          <div class="hero-shot-button">
+            <button class="button-contact">LET'S MAKE CONTACT</button>
+          </div>
         </div>
-        <div class="hero-shot-subtitle">
-          <span>Consult, Design, and Develop Websites</span>
-        </div>
-        <div class="hero-shot-description">
-          <span>
-            Have something great in mind? Feel free to contact me.
-            I'll help you to make it happen.
-          </span>
-        </div>
-        <div class="hero-shot-button">
-          <button class="button-contact">LET'S MAKE CONTACT</button>
-        </div>
+        <div class="bumper"></div>
       </div>
-      <div class="bumper"></div>
     </div>
   </div>
 </template>
@@ -31,9 +33,7 @@
 export default {
   props: ["name"],
   data() {
-    return {
-      
-    };
+    return {};
   }
 };
 </script>
@@ -56,6 +56,10 @@ export default {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+}
+.container {
+  padding: 0 10px;
+  width: 100%;
 }
 .logo {
   margin: 10px;
@@ -100,5 +104,18 @@ export default {
 }
 .bumper {
   height: 70px;
+}
+
+@media screen and (max-width: 480px) {
+  .hero-shot {
+    padding: 0 20px;
+  }
+}
+
+
+@media screen and (max-device-width: 480px) {
+  .hero-shot {
+    padding: 0 20px;
+  }
 }
 </style>

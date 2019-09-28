@@ -37,20 +37,18 @@
 
 <script>
 export default {
-    props: ['expiredTime', 'newsletterToggle'],
-    data() {
-        return{
-            
-        }
-    },
-    methods: {
-        closeModal(){
-            let date = new Date();
-            this.$emit('update:expiredTime', date.getTime());
-            this.$emit('update:newsletterToggle', false);
-            this.$emit('close');
-        }
+  props: ["expiredTime", "newsletterToggle"],
+  data() {
+    return {};
+  },
+  methods: {
+    closeModal() {
+      let date = new Date();
+      this.$emit("update:expiredTime", date.getTime());
+      this.$emit("update:newsletterToggle", false);
+      this.$emit("close");
     }
+  }
 };
 </script>
 <style scoped>
@@ -125,7 +123,7 @@ export default {
 }
 
 .slide-fade.enter {
-    opacity: 0;
+  opacity: 0;
 }
 
 .slide-fade-enter-active {
@@ -180,9 +178,8 @@ export default {
   }
 }
 
-
 @media screen and (min-device-width: 481px) and (max-device-width: 835px) {
-.modal-input-text {
+  .modal-input-text {
     width: 50%;
   }
 }
@@ -205,7 +202,7 @@ export default {
   }
 }
 @media screen and (min-width: 481px) and (max-width: 835px) {
-.modal-input-text {
+  .modal-input-text {
     width: 50%;
   }
 }
