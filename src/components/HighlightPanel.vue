@@ -9,7 +9,6 @@
     </div>
     <div class="highlight-content">
       <highlight-card
-        class="highlight-card"
         v-for="(data, index) in datas"
         :key="index"
         :title="data.title"
